@@ -3910,7 +3910,7 @@ sfdx force:visualforce:component:create -n mycomponent -l mylabel -d components
 
 <a id="force-visualforce-page-create" />
 
-### `force:visualforce:page:create```
+### `force:visualforce:page:create`
 
 ###### USAGE
 
