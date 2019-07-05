@@ -3940,3 +3940,200 @@ sfdx force:visualforce:page:create -n <string> -l <string> [-t <string>] [-d <st
 sfdx force:visualforce:page:create -n mypage -l mylabel
 sfdx force:visualforce:page:create -n mypage -l mylabel -d pages
 ```
+<a id="plugins" />
+
+### `plugins`
+
+##### USAGE
+
+```
+sfdx plugins
+```
+
+##### OPTIONS
+  + --core\
+  *show core plugins*
+
+##### EXAMPLE
+
+```
+sfdx plugins
+```
+
+COMMANDS
+  plugins:generate   create a new sfdx-cli plugin
+  plugins:install    installs a plugin into the CLI
+  plugins:link       links a plugin into the CLI for development
+  plugins:uninstall  removes a plugin from the CLI
+  plugins:update     update installed plugins
+
+TOPICS
+  Run help for each topic below to view subcommands
+
+  plugins:trust  pack an npm package and produce a tgz file along with a corresponding digital signature
+  
+
+<a id="plugins-generate" />
+
+### `sfdx plugins:generate`
+
+create a new sfdx-cli plugin
+
+##### USAGE
+
+```
+sfdx plugins:generate [PATH]
+```
+
+##### OPTIONS
+  --defaults  use defaults for every setting
+  --force     overwrite existing files
+
+
+<a id="plugins-install" />
+
+### `sfdx plugins:install`
+
+##### USAGE
+
+```
+sfdx plugins:install PLUGIN...
+```
+
+##### ARGUMENTS
+  PLUGIN  plugin to install
+
+##### OPTIONS
+  + -f, --force\
+  *yarn install with force flag*
+  + -h, --help\
+  *show CLI help*
+  + -v, --verbose
+
+##### DESCRIPTION
+  Can be installed from npm or a git url.
+
+  Installation of a user-installed plugin will override a core plugin.
+
+  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command will override the core plugin implementation. This is useful if a user needs
+
+  to update core plugin functionality in the CLI without the need to patch and update the whole CLI.
+
+##### ALIASES
+
+```
+sfdx plugins:add
+```
+
+##### EXAMPLES
+
+```
+sfdx plugins:install myplugin
+sfdx plugins:install https://github.com/someuser/someplugin
+sfdx plugins:install someuser/someplugin
+```
+
+<a id="plugins-link" />
+
+### `sfdx plugins:link`
+
+##### USAGE
+
+```
+sfdx plugins:link PLUGIN
+```
+
+##### ARGUMENTS
+  PATH  [default: .] path to plugin
+
+##### OPTIONS
+  + -h, --help\
+  *show CLI help*
+  + -v, --verbose
+
+##### DESCRIPTION
+  Installation of a linked plugin will override a user-installed or core plugin.
+
+  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello' command will override the user-installed or core plugin implementation.
+  This is useful for development work.
+
+##### EXAMPLE
+
+```
+sfdx plugins:link myplugin
+```
+
+<a id="plugins-trust-sign" />
+
+### `sfdx plugins:trust:sign`
+
+pack an npm package and produce a tgz file along with a corresponding digital signature
+
+##### USAGE
+
+```
+sfdx plugins:trust:sign -s <string> -p <string> -k <string> [--json] [--loglevel trace|debug|info|warn|error|fatal]
+```
+
+##### OPTIONS
+  + -k, --privatekeypath=privatekeypath\
+  *(required) the local file path for the private key.*
+  + -p, --publickeyurl=publickeyurl\
+  *(required) the url where the public key/certificate will be hosted.*
+  + -s, --signatureurl=signatureurl\
+  *(required) the url location where the signature will be hosted minus the name of the actual signature file.*
+  
+
+##### EXAMPLE
+
+```
+sfdx plugins:trust:sign --signature npmName-0.0.1.sig --publicKeyUrl https://developer.salesforce.com/media/salesforce-cli/sfdx.cer --privateKeyPath $HOME/secret.key
+```
+
+<a id="plugins-trust-verify" />
+
+### `sfdx plugins:trust:verify`
+
+##### USAGE
+
+```
+sfdx plugins:trust:verify -n <string> [-r <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal]
+```
+
+##### OPTIONS
+  + -n, --npm=npm\
+  *(required) Specify the npm name. This can include a tag/version
+  + -r, --registry=registry\
+  *The registry name. the behavior is the same as npm.*  
+
+##### EXAMPLES
+
+```
+sfdx plugins:trust:verifySignature --npm @scope/npmName --registry http://my.repo.org:4874
+sfdx plugins:trust:verifySignature --npm @scope/npmName
+```
+
+<a id="plugins-uninstall" />
+
+### `sfdx plugins:uninstall`
+
+##### USAGE
+
+```
+sfdx plugins:uninstall PLUGIN...
+```
+
+##### ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+##### OPTIONS
+  + -h, --help\
+  *show CLI help*
+  + -v, --verbose
+
+##### ALIASES
+
+```
+sfdx plugins:unlink
+sfdx plugins:remove
+```
